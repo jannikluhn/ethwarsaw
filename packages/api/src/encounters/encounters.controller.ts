@@ -42,7 +42,7 @@ export class EncountersController {
       responseBody.eligibleMinter = user.split(':')[1];
       const mintMessage = ethers.solidityPacked(
         ['address', 'uint256', 'uint256'],
-        [responseBody.eligibleMinter, 123, 1],
+        [responseBody.eligibleMinter, responseBody.tokenId, 1],
       );
       responseBody.authorizationSignature = await signer.signMessage(
         ethers.getBytes(mintMessage),

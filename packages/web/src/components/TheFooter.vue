@@ -1,4 +1,2 @@
-<template>
-  <div>Hello from Footer.</div>
-</template>
+<template></template>
 <script lang="ts" setup></script>
