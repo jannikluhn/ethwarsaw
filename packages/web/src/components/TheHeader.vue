@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex h-16 w-full justify-between items-centers pt-0 px-6">
+  <div class="d-flex h-16 w-full justify-between items-centers pt-0 px-6 mb-4">
     <div
       class="d-flex text-black text-2xl cursor-pointer"
       @click="push({ name: 'Home' })"

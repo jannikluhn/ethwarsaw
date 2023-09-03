@@ -4,9 +4,9 @@ import { AppService } from './app.service';
 import { SiweController } from './siwe/siwe.controller';
 import { RedisModule } from './redis/redis.module';
 import { EncountersController } from './encounters/encounters.controller';
-
+import { ConfigModule } from '@nestjs/config';
 @Module({
-  imports: [RedisModule],
+  imports: [ConfigModule.forRoot(), RedisModule],
   controllers: [AppController, SiweController, EncountersController],
   providers: [AppService],
 })

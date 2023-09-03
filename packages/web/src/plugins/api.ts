@@ -66,7 +66,13 @@ export type EncounterGame = {
   status: string;
   answer: string;
   correctAnswer?: string;
+  tokenId?: BigInt;
+  eligibleMinter?: string;
+  uriIndex?: string;
+  chainId?: string;
+  authorizationSignature?: string;
 };
+
 export async function getEncounterGame(
   encounterId: string
 ): Promise<Response<EncounterGame>> {

@@ -55,6 +55,14 @@ export class RedisService {
     ]);
   }
 
+  async getEncounter(encounterId: string): Promise<string[]> {
+    return await this.redis.hmGet(`encounter:${encounterId}`, [
+      'tokenId',
+      'chainId',
+      'user',
+    ]);
+  }
+
   async submitEncounterGameAnswer(
     encounterId: string,
     answerIndex: string,

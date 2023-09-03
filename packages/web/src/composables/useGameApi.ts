@@ -9,7 +9,7 @@ export function useGameApi(encounterId: string) {
   const fetchInProgress = ref(false);
 
   const submissionInProgress = ref(false);
-  const game: Ref<EncounterGame | undefined> = ref(undefined);
+  const encounterGame: Ref<EncounterGame | undefined> = ref(undefined);
 
   async function _getEncounterGame() {
     fetchInProgress.value = true;
@@ -17,7 +17,7 @@ export function useGameApi(encounterId: string) {
     try {
       const response = await getEncounterGame(encounterId);
       if (response.data) {
-        game.value = response.data;
+        encounterGame.value = response.data;
       }
     } catch (e) {
       console.error(e);
@@ -32,7 +32,7 @@ export function useGameApi(encounterId: string) {
     try {
       const response = await submitGameAnswer(encounterId, answerIndex);
       if (response.data) {
-        game.value = response.data;
+        encounterGame.value = response.data;
       }
     } catch (e) {
       console.error(e);
@@ -48,6 +48,6 @@ export function useGameApi(encounterId: string) {
     submitGameAnswer: _submitGameAnswer,
     fetchInProgress,
     submissionInProgress,
-    game,
+    encounterGame,
   };
 }
