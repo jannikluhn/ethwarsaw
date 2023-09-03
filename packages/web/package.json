@@ -5,11 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/node-fetch": "^2.6.4",
     "ethers": "^6.7.1",
+    "node-fetch": "^3.3.2",
     "pinia": "^2.1.6",
     "siwe": "^2.1.4",
     "use-wagmi": "^0.3.10",

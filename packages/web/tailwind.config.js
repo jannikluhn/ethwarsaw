@@ -21,7 +21,18 @@ const Flip = plugin(function ({ addUtilities }) {
 export default {
   content: ["./public/**/*.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        TitanOne: ["Titan One"],
+        LexendDeca: ["Lexend Deca"],
+      },
+      backgroundImage: (theme) => ({
+        "hero-fluffe-1": "url('/fluffe-1.svg')",
+        "telegram-bot": "url('/telegram-bot-bg.svg')",
+        "p-cloud": "url('/p-cloud.png')",
+        "fluffe-bot": "url('/fluffe-bot.svg')",
+      }),
+    },
   },
   plugins: [Flip],
 };

@@ -1,16 +1,15 @@
 <template>
-  <div class="d-flex h-16 bg-lime-300 w-full justify-between items-center px-4">
+  <div class="d-flex h-16 w-full justify-between items-centers pt-0 px-6">
     <div
       class="d-flex text-black text-2xl cursor-pointer"
       @click="push({ name: 'Home' })"
     >
-      Logo
+      <Logo></Logo>
     </div>
-    <!-- <WalletConnection class="d-flex"></WalletConnection> -->
   </div>
 </template>
 <script lang="ts" setup>
-import WalletConnection from "./WalletConnection.vue";
+import Logo from "./common/Logo.vue";
 import { useRouter } from "vue-router";
 
 const { push } = useRouter();
