@@ -121,6 +121,7 @@ def make_game_key(rule, log):
 def store_encounter(r, rule, log, user_address):
     encounter_key = make_encounter_key(rule, log)
     token_id = make_token_id(rule, log)
+    game_key = make_game_key(rule, log)
     encounter = {
         "chainId": rule["chainID"],
         "blockNumber": log["blockNumber"],
@@ -130,10 +131,10 @@ def store_encounter(r, rule, log, user_address):
         "user": make_user_key(user_address),
         "nftType": rule["nftType"],
         "tokenId": to_hex(token_id),
+        "game": game_key,
     }
     r.hset(encounter_key, mapping=encounter)
 
-    game_key = make_game_key(rule, log)
     game = {
         "encounter": encounter_key,
         "status": "pending",

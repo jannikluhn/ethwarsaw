@@ -35,3 +35,9 @@ encounter: |
 
 invalid_chat_secret: |
   Something seems to have gone wrong with the registration, please try again.
+
+no_encounter_found: |
+  Something went wrong, no encounter found.
+
+ignored_encounter: |
+  You decide to step away and let the creature run away.

@@ -27,6 +27,7 @@ REDIS_HOST = os.environ["REDIS_HOST"]
 REDIS_PORT = int(os.environ["REDIS_PORT"])
 TELEGRAM_BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
 DIALOGUE_PATH = os.environ["DIALOGUE_PATH"]
+GAME_URL = os.environ["GAME_URL"]
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
@@ -51,6 +52,14 @@ def make_chat_secret_key(chat_secret):
     return f"userChatSecret:{chat_secret}"
 
 
+def make_chat_id_address_key(chat_id):
+    return f"chatIdAddress:{chat_id}"
+
+
+def make_user_encounters_key(address):
+    return f"userEncounters:{address}"
+
+
 async def unknown(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(
         chat_id=update.effective_chat.id, text=dialogue["unknown"]
@@ -69,16 +78,73 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_key = make_user_key(address)
     await r.hset(user_key, "chatId", str(update.message.chat_id))
 
+    chat_id_address_key = make_chat_id_address_key(update.message.chat_id)
+    await r.set(chat_id_address_key, address)
+
     await update.message.reply_text(text=dialogue["welcome"])
 
 
 async def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Parses the CallbackQuery and updates the message text."""
     query = update.callback_query
+    if query.data == IGNORE_OPTION:
+        return await ignore_encounter(update, context)
+    elif query.data == APPROACH_OPTION:
+        return await approach_encounter(update, context)
+    elif query.game_short_name == "CreatureEncounter":
+        return await start_game(update, context)
+    else:
+        raise ValueError("unhandled callback")
+
+
+async def ignore_encounter(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    query = update.callback_query
     await query.answer()
-    # await query.edit_message_text(text=f"Selected option: {query.data}")
     await query.delete_message()
-    # await update.message.reply_text("test")
+    await update.effective_chat.send_message(dialogue["ignored_encounter"])
+
+
+async def approach_encounter(
+    update: Update, context: ContextTypes.DEFAULT_TYPE
+) -> None:
+    query = update.callback_query
+    await query.answer()
+    await query.delete_message()
+
+    await update.effective_chat.send_game("CreatureEncounter")
+    return
+    address = await r.get(make_chat_id_address_key(update.effective_chat.id))
+    latest_encounter_key = await r.lindex(make_user_encounters_key(address), -1)
+    if not latest_encounter_key:
+        await update.effective_chat.send_message(dialogue["no_encounter_found"])
+        return
+
+    encounter = await r.hgetall(encounter_key)
+    if not encounter:
+        await update.effective_chat.send_message(dialogue["no_encounter_found"])
+        return
+
+
+async def start_game(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    query = update.callback_query
+
+    # address = await r.get(make_chat_id_address_key(update.effective_chat.id))
+    # latest_encounter_key = await r.lindex(make_user_encounters_key(address), -1)
+    # if not latest_encounter_key:
+    #     await query.answer()
+    #     await update.effective_chat.send_message(dialogue["no_encounter_found"])
+    #     return
+
+    # encounter = await r.hgetall(encounter_key)
+    # if not encounter:
+    #     await query.answer()
+    #     await update.effective_chat.send_message(dialogue["no_encounter_found"])
+    #     return
+    # print(encounter)
+
+    # game_url = GAME_URL + encounter["game"]
+    game_url = GAME_URL + "game:42220:21192556:13"
+    await query.answer(url=game_url)
 
 
 async def run_bot():
@@ -127,7 +193,7 @@ async def handle_new_encounter(bot, encounter_key):
     encounter = await r.hgetall(encounter_key)
     print(encounter)
     # user = await r.hgetall(encounter["user"])
-    # chat_id = int(user["chatid"])
+    # chat_id = int(user["chatId"])
     chat_id = 3227118
     keyboard = [
         [
