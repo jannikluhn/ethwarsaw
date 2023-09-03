@@ -4,7 +4,16 @@
     "contractAddress": "0xD7cb7686Ed438c55149ded0D4762c70AF3D9923a",
     "eventTopics": ["0xd78ad95fa46c994b6551d0da85fc275fe613ce37657fb8d5e3d130840159d822"],
     "addressDataIndex": null,
-    "addressTopicIndex": 1,
+    "addressTopicIndex": 2,
+    "nftType": "fluffe1",
+    "probability": 1.0
+  },
+  {
+    "chainID": 42220,
+    "contractAddress": "0x38F3c44552a3F6E4D21C8c328cE4904DA766D12f",
+    "eventTopics": ["0xd78ad95fa46c994b6551d0da85fc275fe613ce37657fb8d5e3d130840159d822"],
+    "addressDataIndex": null,
+    "addressTopicIndex": 2,
     "nftType": "fluffe1",
     "probability": 1.0
   }

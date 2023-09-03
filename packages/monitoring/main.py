@@ -39,7 +39,7 @@ def load_rules():
 
 def monitor(w3, r, rules):
     prev_block_number = w3.eth.block_number
-    prev_block_number = 21192556
+    # prev_block_number = 21192556
     while True:
         current_block_number = w3.eth.block_number
         block_number = min(current_block_number, prev_block_number + MAX_BLOCK_RANGE)
@@ -138,7 +138,7 @@ def store_encounter(r, rule, log, user_address):
     game = {
         "encounter": encounter_key,
         "status": "pending",
-        "givenAnswer": "",
+        "answer": "",
         "correctAnswer": random.randint(0, 2),
     }
     r.hset(game_key, mapping=game)

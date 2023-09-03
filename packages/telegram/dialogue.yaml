@@ -8,14 +8,12 @@ welcome: |
 
   Your journey begins now, and I'm here to assist you every step of the way. Whether you seek guidance, have questions, or need hints to uncover these adorable beings, I'm just a message away.
 
-  To navigate this natural wonderland and embark on your quest, simply click 'start.' From there, we'll set off on an adventure like no other.
-
   Remember, patience and gentleness are key when dealing with Fluffees. They're shy and eager to find caring friends. Your actions will shape their destinies, and together, we'll embrace the secrets of the Fluffeverse like leaves in the wind.
 
-  Are you ready to explore, befriend, and evolve alongside these charming creatures? Type 'start' to begin your journey or 'help' if you need assistance at any time.
+  Are you ready to explore, befriend, and evolve alongside these charming creatures? Press 'Fluffeverse' to learn more about this world, 'Help' if you need assistance at any time, or just start exploring on your own.
   Let the adventure commence! 🌈
 
-surroundings: |
+fluffeverse: |
   Now step closer as you are about to experience the wonders of the Fluffeverse. Take a moment to observe your surroundings.
 
   The towering trees, their branches defying gravity, leaves floating gently in the air, forming a natural canopy painted with vibrant colors. The ground beneath your feet is soft and cushioned, like walking on clouds.
@@ -28,7 +26,10 @@ surroundings: |
 
   As our journey begins, your senses are your guide. The Fluffees eagerly await your arrival.
 
-  Now, [Player's Name], let's explore this enchanting world together.
+  Now, let's explore this enchanting world together.
+
+help: |
+  For now you're on your own, but help is on the way and will be here soon!
 
 encounter: |
   I see that one of the Fluffe creatures has noticed your presence. Don’t be shy, try to befriend it. You gain its trust by understanding the creature and its environment.
@@ -41,3 +42,9 @@ no_encounter_found: |
 
 ignored_encounter: |
   You decide to step away and let the creature run away.
+
+successful_adoption: |
+  Congratulations, you just adopted a new Fluffe! 😄
+
+failed_adoption: |
+  Oh, what a real pity. It seems the Fluffe was quite startled and swiftly escaped into another hideout. But not to worry, there are many more Fluffees waiting to be discovered in the Fluffeverse. Keep your spirits high, and your gentle approach will surely lead you to more encounters!
